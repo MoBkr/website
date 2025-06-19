@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBMS - Enhanced Premium Travel Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --navy-blue: #1A1A2E;
+            --gold: #D4AF37;
+            --gold-light: #F4E4B8;
+            --gold-dark: #B8941F;
+            --light-bg: #FAFBFC;
+            --light-secondary: #FFFFFF;
+            --light-text: #2D3748;
+            --light-text-secondary: #4A5568;
+            --dark-bg: #0F0F23;
+            --dark-secondary: #1A1A2E;
+            --dark-text: #FFFFFF;
+            --dark-text-secondary: #CBD5E0;
+            --border-light: #E2E8F0;
+            --border-dark: #2D3748;
+        }
+
+        * {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+
+        /* Enhanced Theme Variables */
+        .light-mode {
+            --bg-primary: var(--light-bg);
+            --bg-secondary: var(--light-secondary);
+            --text-primary: var(--light-text);
+            --text-secondary: var(--light-text-secondary);
+            --border-color: var(--border-light);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark-mode {
+            --bg-primary: var(--dark-bg);
+            --bg-secondary: var(--dark-secondary);
+            --text-primary: var(--dark-text);
+            --text-secondary: var(--dark-text-secondary);
+            --border-color: var(--border-dark);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-weight: 400;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-primary { background-color: var(--bg-primary); }
+        .bg-secondary { background-color: var(--bg-secondary); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .border-custom { border-color: var(--border-color); }
+        .shadow-custom { box-shadow: var(--card-shadow); }
+
+        /* Enhanced Travel-Themed Background */
+        .travel-hero-bg {
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.95) 0%, 
+                rgba(15, 15, 35, 0.9) 50%, 
+                rgba(26, 26, 46, 0.95) 100%);
+        }
+
+        .travel-hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(ellipse 300px 100px at 20% 10%, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 120px at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 350px 90px at 60% 15%, rgba(255, 255, 255, 0.06) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M100 0C44.77 0 0 44.77 0 100s44.77 100 100 100 100-44.77 100-100S155.23 0 100 0zm0 180c-44.18 0-80-35.82-80-80s35.82-80 80-80 80 35.82 80 80-35.82 80-80 80z'/%3E%3Cpath d='M100 40c-33.14 0-60 26.86-60 60s26.86 60 60 60 60-26.86 60-60-26.86-60-60-60zm0 100c-22.09 0-40-17.91-40-40s17.91-40 40-40 40 17.91 40 40-17.91 40-40 40z'/%3E%3C/g%3E%3C/svg%3E"),
+                linear-gradient(45deg, transparent 48%, rgba(212, 175, 55, 0.1) 49%, rgba(212, 175, 55, 0.1) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(212, 175, 55, 0.1) 49%, rgba(212, 175, 55, 0.1) 51%, transparent 52%);
+            background-size: 500px 300px, 600px 400px, 450px 250px, 200px 200px, 100px 100px, 150px 150px;
+            background-position: 0% 0%, 100% 0%, 50% 0%, 0% 0%, 0% 0%, 100% 100%;
+            animation: floatingClouds 20s ease-in-out infinite;
+        }
+
+        @keyframes floatingClouds {
+            0%, 100% { 
+                background-position: 0% 0%, 100% 0%, 50% 0%, 0% 0%, 0% 0%, 100% 100%; 
+            }
+            50% { 
+                background-position: 5% -2%, 95% 2%, 45% -1%, 2% 1%, 1% 1%, 98% 98%; 
+            }
+        }
+
+        /* Enhanced Airplane Animations */
+        .airplane-hero {
+            position: absolute;
+            font-size: 4rem;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .airplane-1 {
+            top: 15%;
+            left: -150px;
+            animation: flyAcross1 18s infinite linear;
+            animation-delay: 0s;
+        }
+
+        .airplane-2 {
+            top: 70%;
+            right: -150px;
+            animation: flyAcross2 22s infinite linear;
+            animation-delay: 8s;
+            transform: scaleX(-1);
+        }
+
+        .airplane-3 {
+            top: 40%;
+            left: -150px;
+            animation: flyAcross3 25s infinite linear;
+            animation-delay: 15s;
+            font-size: 2.5rem;
+            opacity: 0.6;
+        }
+
+        @keyframes flyAcross1 {
+            0% { 
+                transform: translateX(-150px) translateY(0px) rotate(-10deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { 
+                transform: translateX(calc(100vw + 150px)) translateY(-100px) rotate(15deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flyAcross2 {
+            0% { 
+                transform: scaleX(-1) translateX(150px) translateY(0px) rotate(10deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { 
+                transform: scaleX(-1) translateX(calc(-100vw - 150px)) translateY(-80px) rotate(-15deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flyAcross3 {
+            0% { 
+                transform: translateX(-150px) translateY(0px) rotate(-5deg);
+                opacity: 0;
+            }
+            15% { opacity: 0.6; }
+            85% { opacity: 0.6; }
+            100% { 
+                transform: translateX(calc(100vw + 150px)) translateY(-60px) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Premium Logo Styling */
+        .premium-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            animation: logoGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+            }
+            100% { 
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+            }
+        }
+
+        .logo-container {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 
+                0 20px 40px rgba(212, 175, 55, 0.4),
+                inset 0 2px 10px rgba(255, 255, 255, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: logoShine 3s infinite;
+        }
+
+        @keyframes logoShine {
+            0% { transform: rotate(0deg) translate(-100px, -100px); }
+            100% { transform: rotate(360deg) translate(-100px, -100px); }
+        }
+
+        .logo-text {
+            margin-left: 2rem;
+            text-align: left;
+        }
+
+        .logo-title {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), #FFD700, var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .logo-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            margin-top: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Watermark Logo Background */
+        .watermark-bg {
+            position: relative;
+        }
+
+        .watermark-bg::before {
+            content: 'HBMS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-family: 'Playfair Display', serif;
+            font-size: 12rem;
+            font-weight: 800;
+            color: rgba(212, 175, 55, 0.03);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Enhanced Service Cards */
+        .service-card {
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced Testimonials Section */
+        .testimonials-bg {
+            position: relative;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .testimonials-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D4AF37' fill-opacity='0.02'%3E%3Cpath d='M50 50m-40 0a40 40 0 1 1 80 0a40 40 0 1 1 -80 0'/%3E%3Cpath d='M50 30a20 20 0 1 1 0 40a20 20 0 1 1 0-40'/%3E%3C/g%3E%3C/svg%3E"),
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            background-size: 150px 150px, 400px 400px, 400px 400px;
+            pointer-events: none;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(45deg) translate(-100%, -100%); }
+            100% { transform: rotate(45deg) translate(100%, 100%); }
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .star {
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            animation: starTwinkle 2s ease-in-out infinite alternate;
+        }
+
+        .star:nth-child(1) { animation-delay: 0s; }
+        .star:nth-child(2) { animation-delay: 0.2s; }
+        .star:nth-child(3) { animation-delay: 0.4s; }
+        .star:nth-child(4) { animation-delay: 0.6s; }
+        .star:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes starTwinkle {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .testimonial-quote {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            font-family: 'Playfair Display', serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            position: absolute;
+            bottom: -2rem;
+            right: -1rem;
+            font-family: 'Playfair Display', serif;
+            opacity: 0.3;
+        }
+
+        .client-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--navy-blue);
+            margin: 0 auto 1.5rem;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .client-avatar::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            z-index: -1;
+            animation: avatarGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes avatarGlow {
+            0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
+        }
+
+        .client-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .client-role {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        /* Mobile Testimonials Slider */
+        @media (max-width: 768px) {
+            .testimonials-container {
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            .testimonials-container::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .testimonials-grid {
+                display: flex;
+                gap: 1.5rem;
+                padding-bottom: 1rem;
+            }
+            
+            .testimonial-card {
+                min-width: 300px;
+                flex-shrink: 0;
+            }
+        }
+
+        /* Premium Button Styling */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--navy-blue);
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-gold:hover::before {
+            left: 100%;
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Enhanced WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 36px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            animation: whatsappFloat 3s ease-in-out infinite;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            z-index: -1;
+            animation: whatsappPulse 2s infinite;
+            opacity: 0.7;
+        }
+
+        .whatsapp-float::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 24px;
+            height: 24px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: notificationBounce 2s infinite;
+            border: 2px solid white;
+        }
+
+        @keyframes whatsappFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(2deg); }
+        }
+
+        @keyframes whatsappPulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.1); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        @keyframes notificationBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.7);
+        }
+
+        /* Enhanced Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.4s ease-out;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 1rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border-color);
+            transform: scale(0.9);
+            animation: modalSlideIn 0.4s ease-out forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes modalSlideIn {
+            from { 
+                transform: scale(0.8) translateY(100px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: scale(1) translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), #FFD700, var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            text-shadow: 0 4px 8px rgba(212, 175, 55, 0.2);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        /* Travel Icons Animation */
+        .travel-icon {
+            display: inline-block;
+            animation: travelFloat 4s ease-in-out infinite;
+            margin: 0 1rem;
+            font-size: 1.2em;
+        }
+
+        @keyframes travelFloat {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            25% { transform: translateY(-8px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            75% { transform: translateY(-8px) rotate(0deg); }
+        }
+
+        /* Enhanced Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle.dark::before {
+            transform: translateX(30px);
+            background: var(--navy-blue);
+        }
+
+        /* Header Enhancement */
+        .header-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(var(--bg-secondary), 0.9);
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-title { font-size: 3rem; }
+            .logo-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.8rem; }
+            .whatsapp-float { 
+                width: 70px; 
+                height: 70px; 
+                font-size: 32px; 
+                bottom: 20px;
+                right: 20px;
+            }
+            .airplane-hero { font-size: 3rem; }
+            .premium-logo { flex-direction: column; text-align: center; }
+            .logo-text { margin-left: 0; margin-top: 1rem; }
+            .watermark-bg::before { font-size: 6rem; }
+        }
+
+        /* PDF Export Optimizations */
+        @media print {
+            .whatsapp-float { display: none; }
+            .theme-toggle { display: none; }
+            body { overflow: visible; }
+            .airplane-hero { display: none; }
+            .travel-hero-bg::before { animation: none; }
+        }
+    </style>
+</head>
+<body class="dark-mode font-sans">
+    
+    <!-- Header -->
+    <header class="bg-secondary sticky top-0 z-50 shadow-custom border-b border-custom header-blur">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Enhanced Compact Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white border-opacity-20">
+                        <span class="text-navy-blue font-bold text-3xl font-serif">H</span>
+                    </div>
+                    <div>
+                        <h1 class="font-serif font-bold text-3xl text-primary bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">HBMS</h1>
+                        <p class="text-sm text-secondary font-medium" data-ar="خدمات رجال الأعمال المتميزة" data-en="Premium Business Services">خدمات رجال الأعمال المتميزة</p>
+                    </div>
+                </div>
+
+                <!-- Navigation & Controls -->
+                <div class="flex items-center space-x-6">
+                    <!-- Enhanced Theme Toggle -->
+                    <div class="theme-toggle" id="themeToggle">
+                        <div class="theme-toggle-icon sun">☀️</div>
+                        <div class="theme-toggle-icon moon">🌙</div>
+                    </div>
+
+                    <!-- Language Toggle -->
+                    <button id="langToggle" class="flex items-center space-x-2 p-3 rounded-full bg-primary text-secondary hover:bg-yellow-500 hover:text-navy-blue transition-all duration-300">
+                        <span id="langFlag">🇪🇬</span>
+                        <span id="langText" class="hidden md:inline font-semibold">العربية</span>
+                    </button>
+
+                    <!-- Navigation -->
+                    <nav class="hidden md:flex space-x-8">
+                        <a href="#home" class="text-secondary hover:text-yellow-500 transition-colors duration-300 font-semibold" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+                        <a href="#services" class="text-secondary hover:text-yellow-500 transition-colors duration-300 font-semibold" data-ar="الخدمات" data-en="Services">الخدمات</a>
+                        <a href="#about" class="text-secondary hover:text-yellow-500 transition-colors duration-300 font-semibold" data-ar="عن الشركة" data-en="About Us">عن الشركة</a>
+                        <a href="#testimonials" class="text-secondary hover:text-yellow-500 transition-colors duration-300 font-semibold" data-ar="آراء العملاء" data-en="Testimonials">آراء العملاء</a>
+                        <a href="#contact" class="text-secondary hover:text-yellow-500 transition-colors duration-300 font-semibold" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+                    </nav>
+
+                    <!-- Header WhatsApp -->
+                    <a href="https://wa.me/201128088852?text=مرحبًا،%20عايز%20استفسر%20عن%20خدمات%20HBMS" target="_blank" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-all duration-300 hover:scale-110 shadow-lg">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center travel-hero-bg overflow-hidden">
+        <!-- Animated Airplanes -->
+        <div class="airplane-hero airplane-1">✈️</div>
+        <div class="airplane-hero airplane-2">✈️</div>
+        <div class="airplane-hero airplane-3">🛩️</div>
+        
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <!-- Enhanced Premium Logo -->
+            <div class="premium-logo" data-aos="fade-down" data-aos-duration="1200">
+                <div class="logo-container">
+                    <div class="w-32 h-32 bg-navy-blue rounded-full flex items-center justify-center relative z-10 border-4 border-white border-opacity-20">
+                        <span class="text-gold font-bold text-6xl font-serif">H</span>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <h1 class="logo-title font-serif">HBMS</h1>
+                    <p class="logo-subtitle" data-ar="خدمات رجال الأعمال المتميزة" data-en="Premium Business Services">خدمات رجال الأعمال المتميزة</p>
+                </div>
+            </div>
+
+            <!-- Main Heading -->
+            <h2 class="font-serif text-6xl md:text-8xl font-bold text-white mb-8" data-aos="fade-up" data-aos-delay="300">
+                <span data-ar="سافر وانت مطمن" data-en="Travel With Peace of Mind">سافر وانت مطمن</span>
+                <div class="travel-icon">🌍</div>
+            </h2>
+            
+            <p class="text-2xl md:text-3xl text-gray-200 mb-12 max-w-5xl mx-auto leading-relaxed font-medium" data-aos="fade-up" data-aos-delay="500">
+                <span data-ar="خبرة أكتر من 10 سنين في حجز التأشيرات وتذاكر السفر والفنادق حول العالم. نحن نجعل أحلام السفر حقيقة." data-en="Over 10 years of experience in visas, flights, and hotel bookings worldwide. We make travel dreams come true.">خبرة أكتر من 10 سنين في حجز التأشيرات وتذاكر السفر والفنادق حول العالم. نحن نجعل أحلام السفر حقيقة.</span>
+            </p>
+            
+            <div data-aos="fade-up" data-aos-delay="700">
+                <button onclick="document.getElementById('contact').scrollIntoView()" class="btn-gold px-12 py-6 rounded-full text-xl font-bold inline-flex items-center">
+                    <span data-ar="ابدأ رحلتك" data-en="Start Your Journey">ابدأ رحلتك</span>
+                    <i class="fas fa-plane ms-3 rtl-flip"></i>
+                </button>
+            </div>
+
+            <!-- Enhanced Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20" data-aos="fade-up" data-aos-delay="900">
+                <div class="text-center bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-lg">
+                    <div class="text-5xl text-gold mb-4">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="font-bold text-4xl text-white mb-3">+10</h3>
+                    <p class="text-gray-300 text-lg" data-ar="سنوات خبرة" data-en="Years Experience">سنوات خبرة</p>
+                </div>
+                <div class="text-center bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-lg">
+                    <div class="text-5xl text-gold mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="font-bold text-4xl text-white mb-3">500+</h3>
+                    <p class="text-gray-300 text-lg" data-ar="عميل راضي" data-en="Happy Clients">عميل راضي</p>
+                </div>
+                <div class="text-center bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-lg">
+                    <div class="text-5xl text-gold mb-4">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-4xl text-white mb-3">50+</h3>
+                    <p class="text-gray-300 text-lg" data-ar="دولة" data-en="Countries">دولة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-secondary relative watermark-bg">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="section-title font-serif" data-aos="fade-down">
+                    <span class="travel-icon">🎯</span>
+                    <span data-ar="عن شركة HBMS" data-en="About HBMS">عن شركة HBMS</span>
+                    <span class="travel-icon">🏆</span>
+                </h2>
+                <p class="text-3xl text-secondary leading-relaxed mb-16 font-medium" data-aos="fade-up" data-aos-delay="200">
+                    <span data-ar="احنا بنهتم بكل تفاصيل رحلتك من أول الورق لحد حجز الطيارة والفندق. معانا، السفر أسهل بكتير ومليان بالذكريات الحلوة." data-en="We manage every detail of your trip—from paperwork to flights and hotels. With us, travel is much easier and filled with beautiful memories.">احنا بنهتم بكل تفاصيل رحلتك من أول الورق لحد حجز الطيارة والفندق. معانا، السفر أسهل بكتير ومليان بالذكريات الحلوة.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-primary relative watermark-bg">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="section-title font-serif" data-aos="fade-down">
+                <span class="travel-icon">🛫</span>
+                <span data-ar="خدماتنا المتميزة" data-en="Our Premium Services">خدماتنا المتميزة</span>
+                <span class="travel-icon">🏨</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Service Cards -->
+                <div class="service-card bg-secondary p-10 rounded-3xl text-center shadow-custom" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-7xl text-gold mb-8">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-semibold text-primary mb-6">
+                        <span data-ar="حجز تذاكر طيران" data-en="Flight Booking">حجز تذاكر طيران</span>
+                    </h3>
+                    <p class="text-secondary mb-8 leading-relaxed text-lg">
+                        <span data-ar="أفضل الأسعار لجميع خطوط الطيران العالمية مع خدمة عملاء 24/7" data-en="Best prices for all international airlines with 24/7 customer service">أفضل الأسعار لجميع خطوط الطيران العالمية مع خدمة عملاء 24/7</span>
+                    </p>
+                    <button onclick="openServiceModal('flight')" class="btn-gold px-10 py-4 rounded-full">
+                        <span data-ar="احجز الآن" data-en="Book Now">احجز الآن</span>
+                    </button>
+                </div>
+
+                <div class="service-card bg-secondary p-10 rounded-3xl text-center shadow-custom" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-7xl text-gold mb-8">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-semibold text-primary mb-6">
+                        <span data-ar="حجز مواعيد سفارات" data-en="Visa Appointments">حجز مواعيد سفارات</span>
+                    </h3>
+                    <p class="text-secondary mb-8 leading-relaxed text-lg">
+                        <span data-ar="حجز مواعيد سريع في جميع السفارات مع ضمان الحصول على الموعد" data-en="Fast appointment booking at all embassies with guaranteed appointment">حجز مواعيد سريع في جميع السفارات مع ضمان الحصول على الموعد</span>
+                    </p>
+                    <button onclick="openServiceModal('visa')" class="btn-gold px-10 py-4 rounded-full">
+                        <span data-ar="احجز الآن" data-en="Book Now">احجز الآن</span>
+                    </button>
+                </div>
+
+                <div class="service-card bg-secondary p-10 rounded-3xl text-center shadow-custom" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-7xl text-gold mb-8">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-semibold text-primary mb-6">
+                        <span data-ar="حجز فنادق فاخرة" data-en="Luxury Hotel Reservations">حجز فنادق فاخرة</span>
+                    </h3>
+                    <p class="text-secondary mb-8 leading-relaxed text-lg">
+                        <span data-ar="فنادق مميزة وفاخرة بأسعار تنافسية في أفضل المواقع السياحية" data-en="Premium luxury hotels at competitive prices in the best tourist locations">فنادق مميزة وفاخرة بأسعار تنافسية في أفضل المواقع السياحية</span>
+                    </p>
+                    <button onclick="openServiceModal('hotel')" class="btn-gold px-10 py-4 rounded-full">
+                        <span data-ar="احجز الآن" data-en="Book Now">احجز الآن</span>
+                    </button>
+                </div>
+
+                <div class="service-card bg-secondary p-10 rounded-3xl text-center shadow-custom" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-7xl text-gold mb-8">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-semibold text-primary mb-6">
+                        <span data-ar="تجهيز ملف كامل للسفارة" data-en="Complete Embassy File Preparation">تجهيز ملف كامل للسفارة</span>
+                    </h3>
+                    <p class="text-secondary mb-8 leading-relaxed text-lg">
+                        <span data-ar="تحضير جميع الأوراق المطلوبة للسفارات بدقة ومهنية عالية" data-en="Preparing all required embassy documents with high precision and professionalism">تحضير جميع الأوراق المطلوبة للسفارات بدقة ومهنية عالية</span>
+                    </p>
+                    <button onclick="openServiceModal('documents')" class="btn-gold px-10 py-4 rounded-full">
+                        <span data-ar="احجز الآن" data-en="Book Now">احجز الآن</span>
+                    </button>
+                </div>
+
+                <div class="service-card bg-secondary p-10 rounded-3xl text-center shadow-custom md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-7xl text-gold mb-8">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-semibold text-primary mb-6">
+                        <span data-ar="إدارة الرحلة بالكامل" data-en="Complete Trip Management">إدارة الرحلة بالكامل</span>
+                    </h3>
+                    <p class="text-secondary mb-8 leading-relaxed text-lg">
+                        <span data-ar="خدمة شاملة ومتكاملة من الألف للياء لضمان رحلة مثالية" data-en="Complete and integrated service from A to Z to ensure a perfect trip">خدمة شاملة ومتكاملة من الألف للياء لضمان رحلة مثالية</span>
+                    </p>
+                    <button onclick="openServiceModal('full')" class="btn-gold px-10 py-4 rounded-full">
+                        <span data-ar="احجز الآن" data-en="Book Now">احجز الآن</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Testimonials Section -->
+    <section id="testimonials" class="py-24 testimonials-bg relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="section-title font-serif" data-aos="fade-down">
+                <span class="travel-icon">⭐</span>
+                <span data-ar="آراء عملائنا المميزين" data-en="Our Distinguished Clients' Reviews">آراء عملائنا المميزين</span>
+                <span class="travel-icon">💬</span>
+            </h2>
+            
+           <div class="testimonials-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="star-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <div class="testimonial-quote">
+                            <span data-ar="خدمة ممتازة وسرعة في الإنجاز. حجزولي تذكرة وفيزا ألمانيا في أسبوع واحد! فريق محترف جداً ومتابعة مستمرة." data-en="Excellent service and fast delivery. They booked my ticket and German visa in just one week! Very professional team with continuous follow-up.">خدمة ممتازة وسرعة في الإنجاز. حجزولي تذكرة وفيزا ألمانيا في أسبوع واحد! فريق محترف جداً ومتابعة مستمرة.</span>
+                        </div>
+                        <div class="client-avatar">أ</div>
+                        <div class="client-name">
+                            <span data-ar="أحمد سالم" data-en="Ahmed Salem">أحمد سالم</span>
+                        </div>
+                        <div class="client-role">
+                            <span data-ar="رجل أعمال" data-en="Businessman">رجل أعمال</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="star-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <div class="testimonial-quote">
+                            <span data-ar="فريق محترف جداً وصبور. ساعدوني في كل تفاصيل السفر لبريطانيا. خدمة عملاء متميزة ومتابعة حتى بعد الوصول." data-en="Very professional and patient team. They helped me with every detail of my UK trip. Outstanding customer service and follow-up even after arrival.">فريق محترف جداً وصبور. ساعدوني في كل تفاصيل السفر لبريطانيا. خدمة عملاء متميزة ومتابعة حتى بعد الوصول.</span>
+                        </div>
+                        <div class="client-avatar">م</div>
+                        <div class="client-name">
+                            <span data-ar="مريم أحمد" data-en="Mariam Ahmed">مريم أحمد</span>
+                        </div>
+                        <div class="client-role">
+                            <span data-ar="مهندسة" data-en="Engineer">مهندسة</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="star-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <div class="testimonial-quote">
+                            <span data-ar="أسعار تنافسية وخدمة عملاء ممتازة. أنصح بالتعامل معهم بقوة. جعلوا رحلتي لفرنسا تجربة مذهلة ومريحة جداً." data-en="Competitive prices and excellent customer service. I highly recommend working with them. They made my trip to France an amazing and very comfortable experience.">أسعار تنافسية وخدمة عملاء ممتازة. أنصح بالتعامل معهم بقوة. جعلوا رحلتي لفرنسا تجربة مذهلة ومريحة جداً.</span>
+                        </div>
+                        <div class="client-avatar">خ</div>
+                        <div class="client-name">
+                            <span data-ar="خالد محمد" data-en="Khaled Mohamed">خالد محمد</span>
+                        </div>
+                        <div class="client-role">
+                            <span data-ar="محاسب" data-en="Accountant">محاسب</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-24 bg-primary relative watermark-bg">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="section-title font-serif" data-aos="fade-down">
+                    <span class="travel-icon">📞</span>
+                    <span data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</span>
+                    <span class="travel-icon">✉️</span>
+                </h2>
+                <form id="contactForm" class="space-y-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div>
+                            <input type="text" id="fullName" required class="w-full p-6 bg-secondary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Full Name" placeholder="الاسم الكامل">
+                        </div>
+                        <div>
+                            <input type="tel" id="phone" required class="w-full p-6 bg-secondary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg" data-placeholder-ar="رقم الهاتف" data-placeholder-en="Phone Number" placeholder="رقم الهاتف">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="email" id="email" required class="w-full p-6 bg-secondary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg" data-placeholder-ar="البريد الإلكتروني" data-placeholder-en="Email Address" placeholder="البريد الإلكتروني">
+                    </div>
+                    <div>
+                        <select id="serviceType" required class="w-full p-6 bg-secondary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg">
+                            <option value="" data-ar="اختر نوع الخدمة" data-en="Select Service Type">اختر نوع الخدمة</option>
+                            <option value="flight" data-ar="حجز تذاكر طيران" data-en="Flight Booking">حجز تذاكر طيران</option>
+                            <option value="visa" data-ar="حجز مواعيد سفارات" data-en="Visa Appointments">حجز مواعيد سفارات</option>
+                            <option value="hotel" data-ar="حجز فنادق" data-en="Hotel Reservations">حجز فنادق</option>
+                            <option value="documents" data-ar="تجهيز أوراق السفارة" data-en="Embassy Documents">تجهيز أوراق السفارة</option>
+                            <option value="full" data-ar="إدارة الرحلة بالكامل" data-en="Full Trip Management">إدارة الرحلة بالكامل</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea id="message" rows="8" class="w-full p-6 bg-secondary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none resize-none transition-all duration-300 text-lg" data-placeholder-ar="اكتب رسالتك هنا..." data-placeholder-en="Write your message here..." placeholder="اكتب رسالتك هنا..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-gold px-16 py-6 rounded-full text-xl font-bold inline-flex items-center">
+                            <span data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</span>
+                            <i class="fas fa-paper-plane ms-4"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-navy-blue text-white py-20 relative">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg border-4 border-white border-opacity-20">
+                            <span class="text-navy-blue font-bold text-4xl font-serif">H</span>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-4xl bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">HBMS</h3>
+                            <p class="text-gray-300 text-lg" data-ar="خدمات رجال الأعمال المتميزة" data-en="Premium Business Services">خدمات رجال الأعمال المتميزة</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed text-lg" data-ar="شريكك المثالي في رحلات الأعمال حول العالم. نحن نجعل السفر أسهل وأكثر متعة." data-en="Your perfect partner for business trips worldwide. We make travel easier and more enjoyable.">شريكك المثالي في رحلات الأعمال حول العالم. نحن نجعل السفر أسهل وأكثر متعة.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-2xl mb-8" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="text-gray-300 hover:text-yellow-500 transition-colors duration-300 text-lg" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-yellow-500 transition-colors duration-300 text-lg" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-yellow-500 transition-colors duration-300 text-lg" data-ar="عن الشركة" data-en="About Us">عن الشركة</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-yellow-500 transition-colors duration-300 text-lg" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-2xl mb-8" data-ar="معلومات التواصل" data-en="Contact Info">معلومات التواصل</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-yellow-500 text-xl"></i>
+                            <span class="text-gray-300 text-lg">+20 1128088852</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-yellow-500 text-xl"></i>
+                            <span class="text-gray-300 text-lg">info@hbms.com</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-whatsapp text-yellow-500 text-xl"></i>
+                            <span class="text-gray-300 text-lg">+20 1128088852</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-2xl mb-8" data-ar="تابعنا" data-en="Follow Us">تابعنا</h4>
+                    <div class="flex space-x-6">
+                        <a href="#" class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-navy-blue hover:bg-yellow-400 transition-all duration-300 hover:scale-110 text-xl">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-navy-blue hover:bg-yellow-400 transition-all duration-300 hover:scale-110 text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-navy-blue hover:bg-yellow-400 transition-all duration-300 hover:scale-110 text-xl">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-16 pt-10 text-center">
+                <p class="text-gray-300 text-lg">
+                    <span data-ar="© 2024 Help Businessmen Services. جميع الحقوق محفوظة." data-en="© 2024 Help Businessmen Services. All rights reserved.">© 2024 Help Businessmen Services. جميع الحقوق محفوظة.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced WhatsApp Floating Button -->
+    <a href="https://wa.me/201128088852?text=مرحبًا،%20عايز%20استفسر%20عن%20خدمات%20HBMS" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp" style="margin-top:24px"></i>
+    </a>
+
+    <!-- Service Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-10">
+                <h3 id="modalTitle" class="font-serif text-4xl font-bold text-primary"></h3>
+                <button onclick="closeServiceModal()" class="text-secondary hover:text-gold text-4xl transition-colors duration-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p id="modalDescription" class="text-secondary mb-10 text-xl leading-relaxed"></p>
+            <div class="space-y-8">
+                <input type="text" id="modalName" class="w-full p-5 bg-primary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg" data-placeholder-ar="الاسم" data-placeholder-en="Name" placeholder="الاسم">
+                <input type="tel" id="modalPhone" class="w-full p-5 bg-primary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg" data-placeholder-ar="رقم الهاتف" data-placeholder-en="Phone" placeholder="رقم الهاتف">
+                <textarea id="modalMessage" rows="5" class="w-full p-5 bg-primary text-primary border-2 border-custom rounded-2xl focus:border-gold focus:outline-none transition-all duration-300 text-lg" data-placeholder-ar="تفاصيل إضافية..." data-placeholder-en="Additional details..." placeholder="تفاصيل إضافية..."></textarea>
+            </div>
+            <div class="flex space-x-6 mt-10">
+                <button onclick="submitServiceRequest()" class="btn-gold px-10 py-4 rounded-full flex-1">
+                    <span data-ar="إرسال الطلب" data-en="Send Request">إرسال الطلب</span>
+                </button>
+                <button onclick="closeServiceModal()" class="bg-gray-500 text-white px-10 py-4 rounded-full flex-1 hover:bg-gray-600 transition-all duration-300">
+                    <span data-ar="إلغاء" data-en="Cancel">إلغاء</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // Language and Theme Management
+        let currentLang = 'ar';
+        let currentTheme = 'dark';
+
+        // Language Toggle
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            switchLanguage();
+        });
+
+        function switchLanguage() {
+            const html = document.documentElement;
+            const langFlag = document.getElementById('langFlag');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langFlag.textContent = '🇪🇬';
+                langText.textContent = 'العربية';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langFlag.textContent = '🇬🇧';
+                langText.textContent = 'English';
+            }
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-ar]').forEach(element => {
+                const key = currentLang === 'ar' ? 'data-ar' : 'data-en';
+                element.textContent = element.getAttribute(key);
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-ar]').forEach(element => {
+                const key = currentLang === 'ar' ? 'data-placeholder-ar' : 'data-placeholder-en';
+                element.placeholder = element.getAttribute(key);
+            });
+
+            // Update select options
+            document.querySelectorAll('select option[data-ar]').forEach(option => {
+                const key = currentLang === 'ar' ? 'data-ar' : 'data-en';
+                option.textContent = option.getAttribute(key);
+            });
+        }
+
+        // Enhanced Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            switchTheme();
+        });
+
+        function switchTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (currentTheme === 'light') {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeToggle.classList.remove('dark');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeToggle.classList.add('dark');
+            }
+        }
+
+        // Service Modal Functions
+        function openServiceModal(serviceType) {
+            const modal = document.getElementById('serviceModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            
+            const services = {
+                flight: {
+                    ar: { title: 'حجز تذاكر طيران', desc: 'احجز تذكرة الطيران الخاصة بك بأفضل الأسعار مع ضمان أفضل الخدمات والمواعيد المناسبة لجميع وجهاتك المفضلة' },
+                    en: { title: 'Flight Booking', desc: 'Book your flight ticket at the best prices with guaranteed best services and convenient schedules for all your favorite destinations' }
+                },
+                visa: {
+                    ar: { title: 'حجز مواعيد سفارات', desc: 'احجز موعد السفارة بسرعة وسهولة مع ضمان الحصول على الموعد المناسب وخدمة متابعة شخصية' },
+                    en: { title: 'Visa Appointments', desc: 'Book embassy appointments quickly and easily with guaranteed suitable appointment times and personal follow-up service' }
+                },
+                hotel: {
+                    ar: { title: 'حجز فنادق فاخرة', desc: 'احجز فندقك المفضل في أي مكان حول العالم من أفضل الفنادق الفاخرة بأسعار تنافسية ومميزات خاصة' },
+                    en: { title: 'Luxury Hotel Reservations', desc: 'Book your preferred hotel anywhere around the world from the finest luxury hotels at competitive prices with special perks' }
+                },
+                documents: {
+                    ar: { title: 'تجهيز أوراق السفارة', desc: 'نحضر لك جميع الأوراق والمستندات المطلوبة للسفارة بدقة ومهنية عالية مع ضمان القبول' },
+                    en: { title: 'Embassy Documents', desc: 'We prepare all required papers and documents for the embassy with high precision and professionalism with acceptance guarantee' }
+                },
+                full: {
+                    ar: { title: 'إدارة الرحلة بالكامل', desc: 'خدمة شاملة ومتكاملة لإدارة رحلتك من الألف للياء بأعلى مستوى من الجودة والاحترافية' },
+                    en: { title: 'Complete Trip Management', desc: 'Complete and integrated service to manage your trip from A to Z with the highest level of quality and professionalism' }
+                }
+            };
+
+            const service = services[serviceType][currentLang];
+            modalTitle.textContent = service.title;
+            modalDescription.textContent = service.desc;
+            
+            modal.classList.add('show');
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').classList.remove('show');
+        }
+
+        function submitServiceRequest() {
+            const name = document.getElementById('modalName').value;
+            const phone = document.getElementById('modalPhone').value;
+            const message = document.getElementById('modalMessage').value;
+            
+            if (name && phone) {
+                const whatsappMessage = currentLang === 'ar' 
+                    ? `مرحبًا، اسمي ${name} ورقم هاتفي ${phone}. ${message}`
+                    : `Hello, my name is ${name} and my phone is ${phone}. ${message}`;
+                
+                const whatsappUrl = `https://wa.me/201050793318?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                closeServiceModal();
+                
+                // Clear form
+                document.getElementById('modalName').value = '';
+                document.getElementById('modalPhone').value = '';
+                document.getElementById('modalMessage').value = '';
+            } else {
+                alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill in all required fields');
+            }
+        }
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('fullName').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                service: document.getElementById('serviceType').value,
+                message: document.getElementById('message').value
+            };
+
+            const whatsappMessage = currentLang === 'ar' 
+                ? `طلب جديد من الموقع:\nالاسم: ${formData.name}\nالهاتف: ${formData.phone}\nالبريد: ${formData.email}\nالخدمة: ${formData.service}\nالرسالة: ${formData.message}`
+                : `New request from website:\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service}\nMessage: ${formData.message}`;
+            
+            const whatsappUrl = `https://wa.me/201128088852?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('serviceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeServiceModal();
+            }
+        });
+
+        // Initialize page
+        switchLanguage();
+        switchTheme();
+
+        // Enhanced Testimonials Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.testimonial-card, .service-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Enhanced button animations
+        document.querySelectorAll('.btn-gold').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<span class="loading"></span>';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 1500);
+            });
+        });
+
+        // Mobile responsive adjustments
+        function handleMobileView() {
+            if (window.innerWidth <= 768) {
+                // Mobile-specific adjustments
+                const testimonialCards = document.querySelectorAll('.testimonial-card');
+                testimonialCards.forEach(card => {
+                    card.style.minWidth = '300px';
+                });
+            }
+        }
+
+        window.addEventListener('resize', handleMobileView);
+        handleMobileView();
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.travel-hero-bg');
+            
+            if (heroSection) {
+                const rate = scrolled * -0.5;
+                heroSection.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+
+        // Enhanced logo visibility
+        const logoElements = document.querySelectorAll('.logo-container, .client-avatar');
+        logoElements.forEach(logo => {
+            logo.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            logo.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
